@@ -53,6 +53,7 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
     public void mouseDragged(MouseEvent e){        
     }
 
+    @Override
     public void mouseMoved(MouseEvent e){
         
         double xScale = (double)w/clientPanel.getWidth();
@@ -88,6 +89,7 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
         
     }
 
+    @Override
     public void mouseReleased(MouseEvent e){
         
         System.out.println("Mouse released at: " + e.getX() + ", " + e.getY()); // <-- Aquí
@@ -115,6 +117,7 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
     public void keyTyped(KeyEvent e){
     }
 
+    @Override
     public void keyPressed(KeyEvent e){
         System.out.println("Key pressed: " + e.getKeyCode()); // <-- Aquí
 
@@ -125,6 +128,7 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
 
     }   
 
+    @Override
     public void keyReleased(KeyEvent e){
 	writer.println(Commands.RELEASE_KEY.getAbbrev());
 	writer.println(e.getKeyCode());

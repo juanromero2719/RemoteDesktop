@@ -24,10 +24,6 @@ public class ReceiveEvents extends Thread{
     private boolean continueLoop = true;
 
     public ReceiveEvents(Socket socket, Robot robot){
-
-	this.socket = socket;
-	this.robot = robot;
-	start(); 
         
          try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -60,9 +56,16 @@ public class ReceiveEvents extends Thread{
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+	this.socket = socket;
+	this.robot = robot;
+	start(); 
+        
+        
         
     }
 
+    @Override
     public void run(){
         
 	Scanner scanner = null;
