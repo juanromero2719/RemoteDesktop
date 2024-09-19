@@ -2,7 +2,9 @@ package Server;
 
 
 import java.awt.Robot;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -26,6 +28,38 @@ public class ReceiveEvents extends Thread{
 	this.socket = socket;
 	this.robot = robot;
 	start(); 
+        
+         try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String command = reader.readLine();
+            System.out.println("Command received: " + command); // <-- Aquí
+
+            if (command.equals(Commands.MOVE_MOUSE.getAbbrev())) {
+                int x = Integer.parseInt(reader.readLine());
+                int y = Integer.parseInt(reader.readLine());
+                System.out.println("Moving mouse to: " + x + ", " + y); // <-- Aquí
+                robot.mouseMove(x, y);
+            } else if (command.equals(Commands.PRESS_MOUSE.getAbbrev())) {
+                int button = Integer.parseInt(reader.readLine());
+                System.out.println("Pressing mouse button: " + button); // <-- Aquí
+                robot.mousePress(button);
+            } else if (command.equals(Commands.RELEASE_MOUSE.getAbbrev())) {
+                int button = Integer.parseInt(reader.readLine());
+                System.out.println("Releasing mouse button: " + button); // <-- Aquí
+                robot.mouseRelease(button);
+            } else if (command.equals(Commands.PRESS_KEY.getAbbrev())) {
+                int keycode = Integer.parseInt(reader.readLine());
+                System.out.println("Pressing key: " + keycode); // <-- Aquí
+                robot.keyPress(keycode);
+            } else if (command.equals(Commands.RELEASE_KEY.getAbbrev())) {
+                int keycode = Integer.parseInt(reader.readLine());
+                System.out.println("Releasing key: " + keycode); // <-- Aquí
+                robot.keyRelease(keycode);
+            }
+            // ... (manejo de otros comandos)
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
     }
 

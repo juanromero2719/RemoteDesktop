@@ -31,19 +31,24 @@ public class SetPassword extends JFrame implements ActionListener{
 	
     public SetPassword(){
         
+        label1 = new JLabel();	
+        label1.setText("Coloca una password");
+        text1 = new JTextField(15);
+        label=new JLabel();
+        label.setText("");
+        
         this.setLayout(new BorderLayout());
         
-	label1 = new JLabel();	
-	text1 = new JTextField(15);		
-	label=new JLabel();
         SUBMIT = new JButton("SUBMIT");
         panel=new JPanel(new GridLayout(2,1));
         
-	label.setText("");
-        label1.setText("Coloca una password");
+	
+        
 	panel.add(label1);
-	panel.add(text1);	
-	panel.add(label);
+        panel.add(text1);
+        panel.add(label);
+		
+	
 	panel.add(SUBMIT);
 	add(panel,BorderLayout.CENTER);	
 	SUBMIT.addActionListener(this);

@@ -1,12 +1,13 @@
 Server\ReceiveEvents.class
-Server\SendScreen.class
 Server\Start.class
-Client\Commands.class
 Client\Start.class
+Server\Commands.class
+Client\SendEvents.class
+Server\InitConnection.class
+Server\SendScreen.class
+Client\Commands.class
 Server\SetPassword.class
 Client\Authenticate.class
-Client\SendEvents.class
 Client\CreateFrame.class
 Client\ReceiveScreen.class
 com\mycompany\remotedesktop\RemoteDesktop.class
-Server\InitConnection.class

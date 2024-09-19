@@ -57,17 +57,22 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
         
         double xScale = (double)w/clientPanel.getWidth();
         double yScale = (double)h/clientPanel.getHeight();
+        System.out.println("Mouse moved: " + e.getX() + ", " + e.getY()); 
 	writer.println(Commands.MOVE_MOUSE.getAbbrev());
 	writer.println((int)(e.getX()*xScale));
 	writer.println((int)(e.getY()*yScale));
 	writer.flush();
+        System.out.println("MOVE_MOUSE command sent with coordinates: " + (int)(e.getX()*xScale) + ", " + (int)(e.getY()*yScale)); // <-- Aquí
+
     }
 
     public void mouseClicked(MouseEvent e){
     }
 
+    @Override
     public void mousePressed(MouseEvent e){
     
+        System.out.println("Mouse pressed at: " + e.getX() + ", " + e.getY()); // <-- Aquí
 	writer.println(Commands.PRESS_MOUSE.getAbbrev());
 	int button = e.getButton();
 	int xButton = 16;
@@ -78,11 +83,14 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
         
 	writer.println(xButton);
 	writer.flush();
+        System.out.println("PRESS_MOUSE command sent with button: " + e.getButton()); // <-- Aquí
+
         
     }
 
     public void mouseReleased(MouseEvent e){
         
+        System.out.println("Mouse released at: " + e.getX() + ", " + e.getY()); // <-- Aquí
 	writer.println(Commands.RELEASE_MOUSE.getAbbrev());
 	int button = e.getButton();
 	int xButton = 16;
@@ -93,6 +101,8 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
                 
 	writer.println(xButton);
 	writer.flush();
+        System.out.println("RELEASE_MOUSE command sent with button: " + e.getButton()); // <-- Aquí
+
         
     }
 
@@ -106,9 +116,13 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
     }
 
     public void keyPressed(KeyEvent e){
+        System.out.println("Key pressed: " + e.getKeyCode()); // <-- Aquí
+
 	writer.println(Commands.PRESS_KEY.getAbbrev());
 	writer.println(e.getKeyCode());
 	writer.flush();
+        System.out.println("PRESS_KEY command sent with key code: " + e.getKeyCode()); // <-- Aquí
+
     }   
 
     public void keyReleased(KeyEvent e){
